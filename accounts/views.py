@@ -20,3 +20,20 @@ def register_customer(request):
     else:
         form=RegisterCustomerForm()
         return render(request,'accounts/register.html',{'form':form})
+
+def login_user(request):
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+
+        user=authenticate(request, username=username, password=password)
+
+        if user is None and user.is_active:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.warning(request, 'Please correct the error ')
+            return redirect('login')
+    else:
+        return render(request, 'accounts/login.html')
+    
