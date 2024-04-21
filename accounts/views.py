@@ -37,3 +37,7 @@ def login_user(request):
     else:
         return render(request, 'accounts/login.html')
     
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'Logout request was successfull')
+    return redirect('login')
