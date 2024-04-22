@@ -21,6 +21,9 @@ class Profile(models.Model):
 
     class Meta:
         ordering=['-user']
+        indexes=[
+            models.Index(fields=['-user'])
+        ]
     
     def __str__(self):
         return f'Profile of {self.user.email}'
