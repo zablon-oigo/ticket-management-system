@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 User=get_user_model()
 class Ticket(models.Model):
     status_choices=(
@@ -12,7 +13,7 @@ class Ticket(models.Model):
     title=models.CharField(max_length=100)
     description=models.TextField()
     created_by=models.ForeignKey(User,on_delete=models.CASCADE, related_name='created_by')
-    date_created=models.DateTimeField(auto_now_add=True)
+    date_created=models.DateTimeField(default=timezone.now)
     assigned_to=models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True, blank=True)
     is_resolved=models.BooleanField(default=False)
     accepted_date=models.DateTimeField(null=True, blank=True)
