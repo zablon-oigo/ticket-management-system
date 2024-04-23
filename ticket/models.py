@@ -20,6 +20,9 @@ class Ticket(models.Model):
     closed_date=models.DateTimeField(null=True,blank=True)
     ticket_status=models.CharField(max_length=15, choices=status_choices)
 
+    class Meta:
+        ordering=['-title']
+
     def __str__(self):
         return f'{self.title.capitalize()}'
 
