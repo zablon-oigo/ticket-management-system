@@ -53,3 +53,7 @@ def assign_ticket(request,ticket_id):
         context={'form':form}
         return render(request,'ticket/assign_ticket.html',context)
 
+def ticket_details(request,ticket_id):
+    ticket=Ticket.objects.get(ticket_id=ticket_id)
+    context={'ticket':ticket}
+    return render(request,'ticket/ticket_detail.html', context)
