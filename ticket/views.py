@@ -31,4 +31,7 @@ def create_ticket(request):
         context={'form':form}
         return render(request, 'ticket/create_ticket.html',context)
     
-
+def customer_tickets(request):
+    tickets=Ticket.objects.filter(customer=request.user)
+    context={'tickets',tickets}
+    return render(request, 'ticket/customer_tickets.html',context)
