@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import  CreateTicketForm
+from .forms import  CreateTicketForm,AssignTicketForm
 from .models import Ticket
 from django.contrib import messages
 import random
@@ -35,3 +35,21 @@ def customer_tickets(request):
     tickets=Ticket.objects.filter(customer=request.user)
     context={'tickets',tickets}
     return render(request, 'ticket/customer_tickets.html',context)
+
+def assign_ticket(request,ticket_id):
+    ticket=Ticket.objects.get(ticket_id=ticket_id)
+    if request.method == 'POST':
+        form=AssignTicketForm(request.POST, instance=ticket)
+        if form.is_valid():
+            cd = form.save()
+            messages.success(request, f'Ticket has been assigned to {cd.engineer}')
+            return redirect('ticket-queue')
+        else:
+            messages.warning(request,'Please correc the error below')
+            return redirect('assign-task')
+        
+    else:
+        form=AssignTicketForm()
+        context={'form':form}
+        return render(request,'ticket/assign_ticket.html',context)
+
