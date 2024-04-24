@@ -41,7 +41,9 @@ def assign_ticket(request,ticket_id):
     if request.method == 'POST':
         form=AssignTicketForm(request.POST, instance=ticket)
         if form.is_valid():
-            cd = form.save()
+            cd = form.save(commit=False)
+            cd.is_assigned_to_engineer=True
+            cd.save()
             messages.success(request, f'Ticket has been assigned to {cd.engineer}')
             return redirect('ticket-queue')
         else:
