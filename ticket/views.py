@@ -59,3 +59,9 @@ def ticket_details(request,ticket_id):
     ticket=Ticket.objects.get(ticket_id=ticket_id)
     context={'ticket':ticket}
     return render(request,'ticket/ticket_detail.html', context)
+
+
+def ticket_queue(request):
+    tickets=Ticket.objects.filter(is_assigned_to_engineer=False)
+    context={"tickets":tickets}
+    return render(request,'ticket/tikcet_queue.html', context)
