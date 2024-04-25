@@ -6,7 +6,7 @@ User=get_user_model()
 
 class Ticket(models.Model):
     customer=models.ForeignKey(User, on_delete=models.CASCADE)
-    engineer=models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='engineer')
+    engineer=models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='engineer', null=True, blank=True)
     ticket_id=models.CharField(max_length=15, unique=True)
     ticket_title=models.CharField(max_length=50)
     ticket_description=models.TextField()
