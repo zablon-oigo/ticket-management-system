@@ -32,7 +32,7 @@ def create_ticket(request):
         return render(request, 'ticket/create_ticket.html',context)
     
 def customer_tickets(request):
-    tickets=Ticket.objects.filter(customer=request.user)
+    tickets=Ticket.objects.filter(customer=request.user).order_by('created_on')
     context={'tickets',tickets}
     return render(request, 'ticket/customer_tickets.html',context)
 
