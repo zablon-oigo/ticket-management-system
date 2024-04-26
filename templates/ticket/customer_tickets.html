@@ -7,9 +7,11 @@
     <h5 class="">
         {{ticket.ticket_title}}
     </h5>
+    <span class="">{{ticket.status}}</span>
+    <a href="" class="">view details</a>
     <div class="">
         <small class="">
-            created {{ticket._created_on|naturaltime}}
+            created {{ticket.created_on|naturaltime}}
         </small>
     </div>
   </div>
