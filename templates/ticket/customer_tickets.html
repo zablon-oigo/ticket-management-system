@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+  {% for ticket in tickets %}
+  <div class="">
+    <h5 class="">
+        {{ticket.ticket_title}}
+    </h5>
+    <div class="">
+        <small class="">
+            created {{ticket._created_on|naturaltime}}
+        </small>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
