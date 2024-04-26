@@ -36,6 +36,11 @@ def customer_tickets(request):
     context={'tickets',tickets}
     return render(request, 'ticket/customer_tickets.html',context)
 
+def customer_resolved_tickets(request):
+    tickets=Ticket.objects.filter(customer=request.user, is_resolved=True).order_by('created_on')
+    context={'tickets',tickets}
+    return render(request, 'ticket/customer_tickets.html',context)
+
 def assign_ticket(request,ticket_id):
     ticket=Ticket.objects.get(ticket_id=ticket_id)
     if request.method == 'POST':
