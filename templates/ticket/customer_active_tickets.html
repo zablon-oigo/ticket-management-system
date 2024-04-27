@@ -7,6 +7,9 @@
     <h5 class="">
         {{ticket.ticket_title}}
     </h5>
+   <p class="">
+    {{ticket.ticket_id }} <br/>
+   </p>
     {% if ticket.status == 'Pending'  %}
     <span class="">{{ticket.status}}</span>
     {% elif  ticket.status == 'Resolved' %}
