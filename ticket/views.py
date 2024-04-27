@@ -70,3 +70,8 @@ def ticket_queue(request):
     tickets=Ticket.objects.filter(is_assigned_to_engineer=False)
     context={"tickets":tickets}
     return render(request,'ticket/tikcet_queue.html', context)
+
+def engineer_active_tickets(request):
+    tickets=Ticket.objects.filter(engineer=request.user, is_resolved=False).order_by('-created_on')
+    context={'tickets':tickets}
+    return render(render, 'tickets/customer_active_tickets.html',context)
