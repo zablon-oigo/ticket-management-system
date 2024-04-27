@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+  {% for ticket in tickets %}
+  <div class="">
+    <h5 class="">
+        {{ticket.ticket_title}}
+    </h5>
+    {% if ticket.status == 'Pending'  %}
+    <span class="">{{ticket.status}}</span>
+    {% elif  ticket.status == 'Resolved' %}
+    <span class="">{{ticket.status}}</span>
+    {% elif ticket.status == 'Active' %}
+    <span class="">{{ticket.status}}</span>
+    {% endif %}
+    <a href="" class="">view details</a>
+    <div class="">
+        <small class="">
+            created {{ticket.created_on|naturaltime}}
+        </small>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
