@@ -30,4 +30,15 @@
         severity: {{ticket.severity}}
     </p>
 </div>
+<div class="">
+    {% if ticket.is_resolved %}
+    <h4 class="">
+        Lorem ipsum dolor sit amet consectetur.
+    </h4>
+    {% else %}
+    <h4 class="">
+        resolution step
+    </h4>
+    {% endif %}
+</div>
 {% endblock %}
