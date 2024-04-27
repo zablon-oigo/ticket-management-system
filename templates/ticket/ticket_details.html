@@ -4,5 +4,30 @@
 {% endblock %}
 
 {% block content %}
-
+<h1 class="">
+    {{ticket.ticket_title}}
+</h1>
+<p class="">
+    {{ticket.ticket_description }}
+</p>
+<div class="">
+    <h2 class="">
+        Quick details
+    </h2>
+    <h2 class="">
+        {{ticket.ticket_id}}
+    </h2>
+    <p class="">
+        {{ticket.customer}}
+    </p>
+    <p class="">
+        {{ticket.engineer}}
+    </p>
+    <p class="">
+        {{ticket.created_on}}
+    </p>
+    <p class="">
+        severity: {{ticket.severity}}
+    </p>
+</div>
 {% endblock %}
