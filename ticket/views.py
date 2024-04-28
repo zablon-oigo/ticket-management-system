@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from .forms import  CreateTicketForm,AssignTicketForm
+from django.contrib.auth import get_user_model
 from .models import Ticket
 from django.contrib import messages
 import random
 import string
 from django.db import IntegrityError
-
+User=get_user_model()
 def create_ticket(request):
     if request.method =='POST':
         form=CreateTicketForm(request.POST)
@@ -57,6 +58,7 @@ def assign_ticket(request,ticket_id):
         
     else:
         form=AssignTicketForm(instance=ticket)
+        form.fields['engineer'].queryset=User.objects.filter(is_engineer=True)
         context={'form':form,'ticket':ticket}
         return render(request,'ticket/assign_ticket.html',context)
 
