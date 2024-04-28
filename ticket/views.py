@@ -74,9 +74,9 @@ def ticket_queue(request):
 def engineer_active_tickets(request):
     tickets=Ticket.objects.filter(engineer=request.user, is_resolved=False).order_by('-created_on')
     context={'tickets':tickets}
-    return render(render, 'tickets/customer_active_tickets.html',context)
+    return render(render, 'tickets/engineer_active_tickets.html',context)
 
 def engineer_resolved_tickets(request):
     tickets=Ticket.objects.filter(engineer=request.user, is_resolved=True).order_by('-created_on')
     context={'tickets':tickets}
-    return render(request, 'ticket/customer_resolved_tickets.html', context)
+    return render(request, 'ticket/engineer_resolved_tickets.html', context)
