@@ -56,7 +56,7 @@ def assign_ticket(request,ticket_id):
             return redirect('assign-task')
         
     else:
-        form=AssignTicketForm()
+        form=AssignTicketForm(instance=ticket)
         context={'form':form}
         return render(request,'ticket/assign_ticket.html',context)
 
