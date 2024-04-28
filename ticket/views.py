@@ -57,7 +57,7 @@ def assign_ticket(request,ticket_id):
         
     else:
         form=AssignTicketForm(instance=ticket)
-        context={'form':form}
+        context={'form':form,'ticket':ticket}
         return render(request,'ticket/assign_ticket.html',context)
 
 def ticket_details(request,ticket_id):
