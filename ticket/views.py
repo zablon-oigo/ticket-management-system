@@ -6,6 +6,7 @@ from django.contrib import messages
 import random
 import string
 from django.db import IntegrityError
+from django.core.mail import send_mail
 User=get_user_model()
 def create_ticket(request):
     if request.method =='POST':
@@ -19,6 +20,12 @@ def create_ticket(request):
                 try:
                     cd.ticket_id=id
                     cd.save()
+                    subject=f'{cd.ticket_title} - {cd.ticket_id}'
+                    message='Thankyou for creating a ticket, we will assign an engineer soon'
+                    email_from='admin@ticket.com'
+                    recipient_list=[request.user.email]
+                    send_mail(subject,message,email_from, recipient_list)
+
                     break
                 except IntegrityError:
                     continue
