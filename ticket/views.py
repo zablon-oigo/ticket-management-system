@@ -25,8 +25,8 @@ def create_ticket(request):
                     email_from='admin@ticket.com'
                     recipient_list=[request.user.email]
                     send_mail(subject,message,email_from, recipient_list)
-
-                    break
+                    return redirect('customer-tickets')
+                    # break
                 except IntegrityError:
                     continue
             messages.success(request, 'Your ticket has been submitted, A support Engineer will reach out soon.')
