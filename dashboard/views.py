@@ -14,4 +14,8 @@ def dashboard(request):
             }
         return render(request,'dashboard/customer_dashboard.html',context)
     elif request.user.is_engineer:
+        tickets=Ticket.objects.filter(engineer=request.user)
+        context={
+            'tickets':tickets,
+        }
         return render(request, 'dashboard/engineer_dashboard.html')
