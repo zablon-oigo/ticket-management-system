@@ -15,7 +15,11 @@ def dashboard(request):
         return render(request,'dashboard/customer_dashboard.html',context)
     elif request.user.is_engineer:
         tickets=Ticket.objects.filter(engineer=request.user)
+        active_tickets=Ticket.objects.filter(engineer=request.user, is_resolved=False).count
+        closed_tickets=Ticket.objects.filter(engineer=request.user, is_resolved=True).count
         context={
             'tickets':tickets,
+            'active_tickets':active_tickets,
+            'closed_tickets':closed_tickets,
         }
         return render(request, 'dashboard/engineer_dashboard.html')
