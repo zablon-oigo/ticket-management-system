@@ -23,3 +23,6 @@ def dashboard(request):
             'closed_tickets':closed_tickets,
         }
         return render(request, 'dashboard/engineer_dashboard.html')
+    
+    elif request.user.is_superuser:
+        return render(request, 'dashboard/admin_dashboard.html')
