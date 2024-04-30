@@ -7,6 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="">
+        <span class="">
+            {{message}}
+        </span>
+    </div>
+    {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock %}
 </body>
