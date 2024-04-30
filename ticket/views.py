@@ -100,3 +100,4 @@ def resolve_ticket(request, ticket_id):
         ticket.status='Resolved'
         ticket.save()
         messages.success(request,"Ticket is now resolved and closed")
+        return redirect('dashboard')
