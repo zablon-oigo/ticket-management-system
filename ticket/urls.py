@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (ticket_details,ticket_queue,create_ticket,assign_ticket ,\
-                    customer_active_tickets,customer_resolved_tickets,engineer_active_tickets,engineer_resolved_tickets)
+                    customer_active_tickets,resolve_ticket,customer_resolved_tickets,engineer_active_tickets,engineer_resolved_tickets)
 
 urlpatterns=[
     path('create-ticket/', create_ticket, name='create_ticket'),
@@ -11,4 +11,5 @@ urlpatterns=[
     path('ticket-queue/', ticket_queue, name='ticket-queue'),
     path('engineer-active/', engineer_active_tickets, name='engineer-active'),
     path('engineer-resolved/', engineer_resolved_tickets, name='engineer-resolved'),
+    path('resolved-ticket/',resolve_ticket ,name='resolved-ticket'),
 ]
