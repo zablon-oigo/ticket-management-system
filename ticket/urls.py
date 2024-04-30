@@ -11,5 +11,5 @@ urlpatterns=[
     path('ticket-queue/', ticket_queue, name='ticket-queue'),
     path('engineer-active/', engineer_active_tickets, name='engineer-active'),
     path('engineer-resolved/', engineer_resolved_tickets, name='engineer-resolved'),
-    path('resolved-ticket/',resolve_ticket ,name='resolved-ticket'),
+    path('resolved-ticket/<str:ticket_id>/',resolve_ticket ,name='resolved-ticket'),
 ]
