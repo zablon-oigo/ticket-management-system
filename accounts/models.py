@@ -3,9 +3,13 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from PIL import Image
 class CustomUser(AbstractUser):
+    first_name=models.CharField(verbose_name='First Name', max_length=30,blank=True )
+    last_name=models.CharField(verbose_name='Last Name', max_length=30,blank=True )
     is_customer=models.BooleanField(default=False)
     is_engineer=models.BooleanField(default=False)
-    email=models.EmailField(unique=True)
+    email=models.EmailField(unique=True,verbose_name='Email Address', max_length=255)
+    is_active=models.BooleanField(default=True)
+    is_admin=models.BooleanField(default=False)
 
     class Meta:
         ordering=['-email']
