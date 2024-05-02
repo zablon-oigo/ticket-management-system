@@ -10,7 +10,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_customer=models.BooleanField(default=False)
     is_engineer=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
-    is_admin=models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     objects=CustomUserManager()
     USERNAME_FIELD='email'
@@ -18,21 +18,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return f'{self.email.lower()}'
-    
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always 
-        return True
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always 
-        return True
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff 
-        return self.is_admin
-    
 
 class Profile(models.Model):
     user=models.OneToOneField(CustomUser, on_delete=models.CASCADE)
