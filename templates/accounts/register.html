@@ -6,7 +6,17 @@ Register
 {% block content %}
 <form action="{% url 'register' %}" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    {% for field in form %}
+    {% if field.errors %}
+     {% for error in field.errors %}
+     <span class="text-rose-500 text-md">
+        {{error}}
+     </span>
+     {% endfor %}
+    {% endif %}
+    {{field.label_tag }} 
+    {{field}}
+    {% endfor %}
     <input type="submit" value="Register">
 </form>
 {% endblock %}
