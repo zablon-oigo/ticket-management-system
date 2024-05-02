@@ -4,19 +4,43 @@ Register
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'register' %}" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-    {% if field.errors %}
-     {% for error in field.errors %}
-     <span class="text-rose-500 text-md">
-        {{error}}
-     </span>
-     {% endfor %}
-    {% endif %}
-    {{field.label_tag }} 
-    {{field}}
-    {% endfor %}
-    <input type="submit" value="Register">
-</form>
+<div class="max-w-sm mx-auto my-40 p-6 m-6 bg-gray-100 rounded-xl shadow-2xl">
+    <div class="flex items-center flex-col">
+             
+       <h2 class="text-3xl font-semibold">Register</h2>
+   <form action="{% url 'register' %}" method="post">
+       {% csrf_token %}
+       {{form.non_field_errors}}
+       <div class="">
+           <label for="" class="font-semibold text-xl">Email</label>
+           {{form.email}}
+       </div>
+       <div class="">
+           <label for="" class="font-semibold text-xl">Password</label>
+           {{form.password1}}
+       </div>
+       <div class="">
+           <label for="" class="font-semibold text-xl">Repeat Password</label>
+           {{form.password2}}
+       </div>
+       <div class="">
+           {% if form.errors or form.non_field_errors %}
+           <div  class="">
+               {% for field in form %}
+               <span class="m-2 bg-rose-500 rounded-xl text-white p-4 text-base">
+                {{field.errors}}
+               </span>
+               {% endfor %}
+               {{form.non_field_errors}}
+           </div>
+           {% endif %}
+              
+       </div>
+       <input type="submit" value="Register" class="m-2 bg-teal-500 py-4 px-6 w-full mx-auto hover:bg-teal-700 rounded-xl font-semibold text-white">
+       <p class="text-base">Already have an account ?<span class="text-teal-500 underline"><a href="{% url 'login' %}">Login</a></span></p>
+    </form>
+    </div> 
+   
+</div>
+
 {% endblock %}
