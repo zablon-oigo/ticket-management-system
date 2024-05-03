@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{%block title %}{% endblock %} |Ticketing System</title>
+    <title>{%block title %}{% endblock %} Ticketing System</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<header class="w-full">
+    <nav class="bg-slate-800 text-white px-10 py-4 flex items-center justify-between">
+        <a href="" class="text-2xl capitalize">
+            ticket
+        </a>
+        <div class="">
+            <a href="" class="">create ticket</a>
+            <a href="" class="">active</a>
+            <a href="" class="">closed ticket</a>
+            <a href="" class="">assign ticket</a>
+        </div>
+        <div class="">
+            {% if request.user.is_authenticated %}
+            <div class="flex items-center gap-4 justify-center">
+                <a href="" class="">
+                    {% if user.profile  %}
+                    <img src="{{user.profile.photo.url}}" alt="{{ user.username }}" class="mx-auto w-10 h-10 rounded-full object-cover object-center" accept=".jpg,.jpeg,.png">
+                    {% endif %}
+                </a>
+                <a href="{% url 'logout' %}" class="px-6 py-3 rounded-lg capitalize font-light bg-rose-500 ">logout</a>
+            
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}" class="px-6 py-3 text-gray-700 rounded-lg capitalize font-light bg-white ">login</a>
+            <a href="{% url 'register' %}" class="px-6 py-3 rounded-lg capitalize font-light bg-teal-500 ">signup</a>
+           {%endif %}
+        </div>
+    </nav>
+</header>
     {% if messages %}
     {% for message in messages %}
     <div class="">
