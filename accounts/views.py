@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, get_user_model
-from .forms import RegisterCustomerForm,LoginForm
+from .forms import RegisterCustomerForm,LoginForm,ProfileForm
 User=get_user_model()
 
 def register_customer(request):
@@ -42,3 +42,14 @@ def logout_user(request):
     logout(request)
     messages.success(request, 'Logout request was successfull')
     return redirect('login')
+
+def profile_edit(request):
+    if request.method == 'POST':
+        form=ProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Profile Updated Successfully")
+            return redirect("")
+    else:
+        form=ProfileForm()
+    return render(request,'accounts/profile.html',{'form':form})
