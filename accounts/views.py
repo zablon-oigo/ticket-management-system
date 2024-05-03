@@ -14,12 +14,9 @@ def register_customer(request):
             cd.save()
             messages.success(request,'Account created. Please log in')
             return redirect('login')
-        else:
-            messages.error(request,"Please correct the Error .")
-            return redirect("register")
     else:
         form=RegisterCustomerForm()
-        return render(request,'accounts/register.html',{'form':form})
+    return render(request,'accounts/register.html',{'form':form})
 
 def login_user(request):
     if request.method == 'POST':
