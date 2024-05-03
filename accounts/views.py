@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, get_user_model
-from .forms import RegisterCustomerForm
-
+from .forms import RegisterCustomerForm,LoginForm
 User=get_user_model()
 
 def register_customer(request):
@@ -20,19 +19,24 @@ def register_customer(request):
 
 def login_user(request):
     if request.method == 'POST':
-        username=request.POST.get('username')
-        password=request.POST.get('password')
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password']
+            user=authenticate(request, email=email, password=password)
 
-        user=authenticate(request, username=username, password=password)
-
-        if user is None and user.is_active:
-            login(request, user)
-            return redirect('dashboard')
-        else:
-            messages.warning(request, 'Please correct the error ')
-            return redirect('login')
+            if user is not None and user.is_active:
+                login(request, user)
+                messages.success(request,'Authenticated Successfully')
+                return redirect('dashboard')
+            else:
+                messages.warning(request, 'Invalid Email or Password')
+                return redirect('login')
     else:
-        return render(request, 'accounts/login.html')
+        form=LoginForm()
+        context={'form':form}
+        
+    return render(request, 'accounts/login.html',context)
     
 def logout_user(request):
     logout(request)
