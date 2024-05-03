@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
+from .models import Profile
 from django.contrib.auth import authenticate,login,logout, get_user_model
 from .forms import RegisterCustomerForm,LoginForm,ProfileForm
 User=get_user_model()
@@ -53,3 +54,8 @@ def profile_edit(request):
     else:
         form=ProfileForm()
     return render(request,'accounts/profile.html',{'form':form})
+
+def profile_view(request):
+    profile=Profile.objects.filter(user=request.user)
+    context={'profile':profile}
+    return render(request,'accounts/profile_view.html', context)
