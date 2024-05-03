@@ -52,3 +52,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields=['photo']
+    def clean_image(self):
+        image=self.cleaned_data['photo']
+        valid_extensions=['jpg','jpeg','png']
+        extension=image.rsplit('.',1)[1].lower()
+        if extension not in valid_extensions:
+            raise forms.ValidationError("The given file does not match valid image extensions.")
+        return image
