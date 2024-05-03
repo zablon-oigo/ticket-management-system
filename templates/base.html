@@ -12,11 +12,12 @@
         <a href="" class="text-2xl capitalize">
             ticket
         </a>
-        <div class="">
-            <a href="" class="">create ticket</a>
-            <a href="" class="">active</a>
-            <a href="" class="">closed ticket</a>
-            <a href="" class="">assign ticket</a>
+        <div class="flex items-center justify-between gap-x-6">
+            <a href="" class="capitalize font-medium text-md">create ticket</a>
+            <a href="" class="capitalize font-medium text-md">active</a>
+            <a href="" class="capitalize font-medium text-md">resolve ticket</a>
+            <a href="" class="capitalize font-medium text-md">closed ticket</a>
+            <a href="" class="capitalize font-medium text-md">assign ticket</a>
         </div>
         <div class="">
             {% if request.user.is_authenticated %}
