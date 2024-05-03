@@ -3,7 +3,15 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth import get_user_model
 User=get_user_model()
-
+class LoginForm(forms.Form):
+    email=forms.CharField(max_length=65, widget=forms.TextInput(attrs={
+        'placeholder':'Enter your username',
+        'class':'w-full py-2 px-4 rounded-xl mb-2 '
+    }))
+    password=forms.CharField(max_length=65, widget=forms.PasswordInput(attrs={
+        'placeholder':'Enter your password',
+        'class':'w-full px-4 py-2 rounded-xl mb-2'
+    }))
 class RegisterCustomerForm(UserCreationForm):
     class Meta:
         model=User
