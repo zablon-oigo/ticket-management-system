@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('dasboard/', include('dashboard.urls')),
+    path('ticket/', include('ticket.urls')),
 ]
 
 if settings.DEBUG:
