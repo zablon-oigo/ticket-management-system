@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Ticket |
+{% endblock %}
+
+{% block  content %}
+<div class="">
+    <form action="{% url 'create_ticket' %}" method="post" class="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="create">
+    </form>
+</div>
+{% endblock %}
