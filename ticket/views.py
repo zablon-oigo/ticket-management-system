@@ -72,7 +72,7 @@ def assign_ticket(request,ticket_id):
 def ticket_details(request,ticket_id):
     ticket=Ticket.objects.get(ticket_id=ticket_id)
     context={'ticket':ticket}
-    return render(request,'ticket/ticket_detail.html', context)
+    return render(request,'ticket/ticket_details.html', context)
 
 
 def ticket_queue(request):
