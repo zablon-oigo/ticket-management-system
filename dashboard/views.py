@@ -25,4 +25,6 @@ def dashboard(request):
         return render(request, 'dashboard/engineer_dashboard.html')
     
     elif request.user.is_superuser:
-        return render(request, 'dashboard/admin_dashboard.html')
+        tickets=Ticket.objects.filter(is_assigned_to_engineer=False)
+        context={"tickets":tickets}
+        return render(request, 'dashboard/admin_dashboard.html',context)
