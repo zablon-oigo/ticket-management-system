@@ -1,3 +1,4 @@
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,16 @@
             ticket
         </a>
         <div class="lg:flex hidden items-center justify-between gap-x-6">
-            <a href="" class="capitalize font-medium text-md">create ticket</a>
+            {% if request.user.is_customer %}
+            <a href="{% url 'create_ticket' %}" class="capitalize font-medium text-md">create ticket</a>
+            {% elif request.user.is_engineer %}
             <a href="" class="capitalize font-medium text-md">active</a>
             <a href="" class="capitalize font-medium text-md">resolve ticket</a>
+            {% elif request.user.is_superuser %}
             <a href="" class="capitalize font-medium text-md">closed ticket</a>
             <a href="" class="capitalize font-medium text-md">assign ticket</a>
+            <a href="{% url  'ticket-queue' %}" class="capitalize font-medium text-md">ticket queue</a>
+            {% endif %}
         </div>
         <div class="lg:block hidden">
             {% if request.user.is_authenticated %}
