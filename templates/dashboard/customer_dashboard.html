@@ -6,21 +6,25 @@ Customer Dashboard |
 
 {% block content %}
 
-<div class="grid grid-cols-2">
-    <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
+<div class="grid grid-cols-2 gap-4">
+    <div class="max-w-md">
+        <a href="#" class="block  p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
 
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center ">Active ticket</h5>
-        <p class="font-normal text-2xl text-gray-700 text-center">
-             {{active_tickets}}
-        </p>
-        </a>
-    <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center ">Active ticket</h5>
+            <p class="font-normal text-2xl text-gray-700 text-center">
+                 {{active_tickets}}
+            </p>
+            </a>
+    </div>
+    <div class="max-w-md">
+        <a href="#" class="block  p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
     
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Closed ticket</h5>
-        <p class="font-normal text-2xl text-gray-700 text-center">
-            {{closed_tickets}}
-        </p>
-        </a>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Closed ticket</h5>
+            <p class="font-normal text-2xl text-gray-700 text-center">
+                {{closed_tickets}}
+            </p>
+            </a>
+    </div>
 </div>
 {% for ticket in tickets %}
 <p class="">
