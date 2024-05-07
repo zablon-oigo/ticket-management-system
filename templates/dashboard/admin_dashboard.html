@@ -4,27 +4,7 @@
 Admin Dashboard |
 {% endblock %}
 {% block content %}
-<table>
-    {% for ticket in tickets %}
-    <tr>
-        <td>
-            <a href="{% url 'ticket-details' ticket.ticket_id%}" class=""></a>
-        </td>
-        <td>
-            {{ticket.ticket_title}}
-        </td>
-        <td>
-            
-        </td>
-        <td>
-            {{ticket.date_created}}
-        </td>
-        <td>
-            <a href="" class="">assing to Engineer</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+
 <div class="container mx-auto p-6">
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -47,8 +27,8 @@ Admin Dashboard |
                             {% for ticket in tickets %}
                             <tr class="border-b">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ticket.ticket_id}}</td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.title}}</td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.created}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.ticket_title}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.created_on}}</td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.customer}}</td>
 
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -62,7 +42,7 @@ Admin Dashboard |
                                     {% endif %}
                                 </td>
                                 <td class="text-sm text-blue-900 font-light px-6 py-4 whitespace-nowrap">
-                                    <a href="{% url 'ticket-details' ticket.pk %}">View Details</a></td>
+                                    <a href="{% url 'ticket-details' ticket.ticket_id%}">View Details</a></td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="{% url 'assign-ticket' ticket.ticket_id %}" class="">assign engineer</a></td>
                             </tr>
                             
