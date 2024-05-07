@@ -52,7 +52,7 @@ def customer_resolved_tickets(request):
 def assign_ticket(request,ticket_id):
     ticket=Ticket.objects.get(ticket_id=ticket_id)
     if request.method == 'POST':
-        form=AssignTicketForm(request.POST, instance=ticket)
+        form=AssignTicketForm(request.POST or None, instance=ticket)
         if form.is_valid():
             cd = form.save(commit=False)
             cd.is_assigned_to_engineer=True
