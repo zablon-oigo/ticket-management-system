@@ -93,7 +93,7 @@ def engineer_resolved_tickets(request):
 
 def resolve_ticket(request, ticket_id):
     ticket=Ticket.objects.get(ticket_id=ticket_id)
-    if request.mthod == 'POST':
+    if request.method == 'POST':
         rs=request.POST.get('rs')
         ticket.resolution_steps=rs
         ticket.is_resolved=True
