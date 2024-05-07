@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Assign Form
+{% endblock %}
+{% block content %}
+<form action="{% url 'assign-ticket' ticket.ticket_id %}" method="post">
+    {% csrf_token %}
+    {{forn.as_p}}
+    <input type="submit" value="assign" class="">
+</form>
+{% endblock %}
