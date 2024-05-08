@@ -1,44 +1,51 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block title %}
 {% endblock %}
 
 {% block content %}
-<h1 class="">
-    {{ticket.ticket_title}}
-</h1>
-<p class="">
-    {{ticket.ticket_description }}
-</p>
-<div class="">
-    <h2 class="">
-        Quick details
-    </h2>
-    <h2 class="">
-        {{ticket.ticket_id}}
-    </h2>
-    <p class="">
-        {{ticket.customer}}
-    </p>
-    <p class="">
-        {{ticket.engineer}}
-    </p>
-    <p class="">
-        {{ticket.created_on}}
-    </p>
-    <p class="">
-        severity: {{ticket.severity}}
-    </p>
-</div>
-<div class="">
-    {% if ticket.is_resolved %}
-    <h4 class="">
-       {{ticket.resolution_steps}}
-    </h4>
-    {% else %}
-    <h4 class="">
-        resolution step
-    </h4>
-    {% endif %}
-</div>
+<section class="grid grid-cols-4 gap-4 px-10 py-20">
+    <div class="col-span-3  bg-gray-100 p-10 ">
+        <h1 class="text-3xl">
+            {{ticket.ticket_title}}
+        </h1>
+        <p class="">
+            {{ticket.ticket_description }}
+        </p>
+        <div class="">
+            {% if ticket.is_resolved %}
+            <h4 class="">
+               {{ticket.resolution_steps}}
+            </h4>
+            {% else %}
+            <h4 class="">
+                resolution step
+            </h4>
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class=" col-span-1  bg-white flex flex-col shadow-2xl max-w-md rounded-xl px-3 py-4 ">
+        <h2 class="text-2xl">
+            Quick details
+        </h2>
+        <h2 class="">
+            {{ticket.ticket_id}}
+        </h2>
+        <p class="">
+            {{ticket.customer}}
+        </p>
+        <p class="">
+            {{ticket.engineer}}
+        </p>
+        <p class="">
+            created {{ticket.created_on|naturaltime}}
+        </p>
+        <p class="">
+            severity: {{ticket.severity}}
+        </p>
+    </div>
+</section>
+
+
 {% endblock %}
