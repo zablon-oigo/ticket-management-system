@@ -33,4 +33,5 @@ class TicketTest(TestCase):
         })
         self.assertEqual(response.status_code,302)
         self.assertEqual(Ticket.objects.last().ticket_title,"windows os")
+        self.assertEqual(Ticket.objects.last().ticket_description,"windows installation")
         
