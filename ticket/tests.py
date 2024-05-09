@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Ticket
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 class TicketTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -22,4 +23,13 @@ class TicketTest(TestCase):
         self.assertEqual(self.ticket.is_resolved,False)
         self.assertEqual(Ticket.objects.count(),1)
         self.assertEqual(str(self.ticket),"ticket 1")
+
+    def test_create_ticket_view(self):
+        self.client.force_login(self.customer)
+        response=self.client.post(reverse("create_ticket"),{
+            "ticket_title":"windows os",
+            "ticket_description":"windows installation",
+            "status":"Pending",
+        })
+        self.assertEqual(response.status_code,302)
         
