@@ -21,4 +21,5 @@ class TicketTest(TestCase):
         self.assertEqual(self.ticket.ticket_description,"linux server installation")
         self.assertEqual(self.ticket.is_resolved,False)
         self.assertEqual(Ticket.objects.count(),1)
+        self.assertEqual(str(self.ticket),"ticket 1")
         

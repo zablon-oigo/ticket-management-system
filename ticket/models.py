@@ -18,3 +18,6 @@ class Ticket(models.Model):
     is_assigned_to_engineer=models.BooleanField(default=False)
     resolution_steps=models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.ticket_title}'
+
