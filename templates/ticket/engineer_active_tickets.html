@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container mx-auto p-6">
+    <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                    <table class="min-w-full">
+                        <thead class="border-b">
+                            <tr>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Ticket ID</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Title</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Created on</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Customer</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Status</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">View</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Assign</th>
+    
+                            </tr>
+                        </thead>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 
 {% endblock %}
