@@ -19,7 +19,32 @@
     
                             </tr>
                         </thead>
-                        
+                        <tbody>
+                            {% for ticket in tickets %}
+                            <tr class="border-b">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ticket.ticket_id}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.ticket_title}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.created_on}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ticket.customer}}</td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {% if ticket.status == 'Active' %}
+                                <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">Active</span>
+    
+                                    {% elif ticket.status == 'Pending' %}
+                                    <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">Pending</span>
+                                    {% elif ticket.status == 'Resolved' %}
+                                    <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">Completed</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-sm text-blue-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <a href="{% url 'ticket-details' ticket.ticket_id%}">View Details</a></td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="{% url 'assign-ticket' ticket.ticket_id %}" class="">assign engineer</a></td>
+                            </tr>
+                            
+                            {% endfor %}
+                            
+                        </tbody>
                     </table>
                 </div>
             </div>
