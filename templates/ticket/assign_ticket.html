@@ -5,7 +5,10 @@ Assign Form
 {% block content %}
 <form action="{% url 'assign-ticket' ticket.ticket_id %}" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+   {% for field in form %}
+   <label for="">Engineer</label>
+   {{field}}
+   {% endfor %}
     <input type="submit" value="assign" class="">
 </form>
 {% endblock %}
