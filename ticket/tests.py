@@ -35,3 +35,9 @@ class TicketTest(TestCase):
         self.assertEqual(Ticket.objects.last().ticket_title,"windows os")
         self.assertEqual(Ticket.objects.last().ticket_description,"windows installation")
         
+    def test_ticket_detail(self):
+        response=self.client.get(reverse("ticket-details"), kwargs={
+            "pk":self.ticket.pk
+        })
+        self.assertEqual(response.status_code, 200)
+        
