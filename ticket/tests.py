@@ -42,4 +42,5 @@ class TicketTest(TestCase):
         self.assertEqual(response.status_code, 200)
         no_response=self.client.get("/detail/10000")
         self.assertEqual(no_response.status_code, 404)
+        self.assertTemplateUsed(response, "ticket/detail.html")
         
